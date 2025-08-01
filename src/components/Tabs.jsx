@@ -1,17 +1,25 @@
+const SPECIAL_TASK = "🌱 Add one task. Make today count.";
+const INPROGRESS_MSG = "🛠 What’s your next move? Let’s do it.";
+
 export function Tabs(props) {
     const { todos, selectedTab, setSelectedTab } = props
 
-    // Use new tab names
+    // Filter out special messages for counts
+    const filteredTodos = todos.filter(
+        todo =>
+            todo.input !== SPECIAL_TASK &&
+            todo.input !== INPROGRESS_MSG
+    );
+
     const tabs = ['📋 All Tasks', '🔓 In Progress', '✅ Done']
 
     return (
         <nav className="tab-container">
             {tabs.map((tab, tabIndex) => {
-                // Map tab names to logic
                 let numOfTasks = 0
-                if (tab === '📋 All Tasks') numOfTasks = todos.length
-                else if (tab === '🔓 In Progress') numOfTasks = todos.filter(val => !val.complete).length
-                else if (tab === '✅ Done') numOfTasks = todos.filter(val => val.complete).length
+                if (tab === '📋 All Tasks') numOfTasks = filteredTodos.length
+                else if (tab === '🔓 In Progress') numOfTasks = filteredTodos.filter(val => !val.complete).length
+                else if (tab === '✅ Done') numOfTasks = filteredTodos.filter(val => val.complete).length
 
                 return (
                     <button onClick={() => setSelectedTab(tab)}

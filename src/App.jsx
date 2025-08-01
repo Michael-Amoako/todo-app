@@ -14,9 +14,7 @@ function App() {
   // ]
 
 
-  const [todos, setTodos] = useState([
-    { input: 'Hello! Add your first todo!', complete: true }
-  ])
+  const [todos, setTodos] = useState([])
   const [selectedTab, setSelectedTab] = useState('🔓 In Progress')
   
 

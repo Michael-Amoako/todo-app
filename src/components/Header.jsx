@@ -12,10 +12,16 @@ export function Header(props) {
     const openTodos = filteredTodos.filter(todo => !todo.complete);
     const openTodosLength = openTodos.length;
 
+    // Dynamic pluralization
+    const taskWord = openTodosLength === 1 ? "Task" : "Tasks";
+    const winWord = openTodosLength === 1 ? "Win" : "Wins";
+    const waitingWord = openTodosLength === 1 ? "Waiting" : "Waiting";
+
     return (
         <header>
             <h1 className="text-gradient">
-                🧩 {openTodosLength} Tasks, {openTodosLength} Wins Waitings
+                🧩 {openTodosLength} {taskWord}, {openTodosLength} {winWord}{" "}
+                {waitingWord}
             </h1>
         </header>
     );
